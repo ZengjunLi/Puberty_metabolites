@@ -6,7 +6,7 @@ devtools::install_github("rondolab/MR-PRESSO",force = TRUE)
 library(MRPRESSO)
 setwd("pathname/data")
 
-#### 2SMR PT on Met ----
+#### Two-sample MR: PT on Met ----
 #exposure
 day208 <- read.csv("exposure_and_confounders/day208.csv")
 colnames(day208)
@@ -73,7 +73,7 @@ write.csv(res_2smr_pt_met_ivw,"result/pt_met_2smr_results(ivw).csv",row.names = 
 write.csv(hete_met,"result/pt_met_2smr_heterogeneity.csv",row.names = FALSE)
 write.csv(pleio_met,"result/pt_met_2smr_pleiotropy.csv",row.names = FALSE)
 
-#### End: 2SMR PT on Met ----
+#### End: Two-sample MR: PT on Met ----
 
 #### MR PRESSO ----
 h <- read.csv("exposure_and_confounders/presso/h.csv")
@@ -121,7 +121,7 @@ pressoall[,8] <- sub("_", ":", pressoall[,8], fixed = TRUE)
 write.csv(pressoall,"result/pressoall.csv", row.names = FALSE)
 #### End: MR PRESSO----
 
-#### 2SMR PT on Met (Excluding 7 snps) ----
+#### Two-sample MR: PT on Met (Excluding 7 snps) ----
 day201 <- read.csv("exposure_and_confounders/day201.csv")
 colnames(day201)
 
@@ -169,7 +169,7 @@ res_sen_2smr$upper = res_sen_2smr$b+1.96*res_sen_2smr$se
 res_sen_2smr <- merge(res_sen_2smr,pathway,by="outcome")
 write.csv(res_sen_2smr,"result/pt_met_2smr_results(ivw)_sensitivity.csv",row.names = FALSE)
 
-#### End: 2SMR PT on Met (Excluding 7 snps)----
+#### End: Two-sample MR: PT on Met (Excluding 7 snps)----
 
 
 
