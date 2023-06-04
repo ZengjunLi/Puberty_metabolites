@@ -186,7 +186,7 @@ write.csv(abmi_met,"outcome/all_abmi_metabolites.csv",row.names = FALSE)
 
 
 
-#### Reprogen GWAS ----
+#### Reprogen GWAS for MVMR ----
 # Downlord: https://reprogen.org/
 reprogen <- read.table("Menarche_1KG_NatGen2017_WebsiteUpload.txt",header = T)
 reprogen2 <- dplyr::filter(reprogen, !grepl(':INDEL', Markername))
@@ -218,7 +218,7 @@ colnames(reprogen_All)[6] <- "pval.exposure"
 reprogen_clumped <- clump_data(reprogen_All)
 write.table(reprogen3,"reprogen_full.txt",row.names = FALSE)
 write.csv(reprogen_clumped,"exposure_and_confounders/reprogen_209.csv",row.names = FALSE)
-#### END: Reprogen GWAS ----
+#### END: Reprogen GWAS for MVMR ----
 
 #### Metabolities for MVMR----
 # # Using rs11227247 as a proxy to replace rs10750766 r2=0.35 delete
