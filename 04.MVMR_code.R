@@ -25,10 +25,10 @@ exposure_dat <- mv_extract_exposures_local(
 )
 
 # outcome
-first_category_name = list.files("D:/research/outcome/mvmr_met_sep/") 
+first_category_name = list.files("outcome/mvmr_met_sep/") 
 for (i in 1 : 174) {
   data_ <- read_outcome_data(
-    filename = paste0('D:/research/outcome/mvmr_met_sep/',first_category_name[i]),
+    filename = paste0('outcome/mvmr_met_sep/',first_category_name[i]),
     sep = ",",
     snp_col = "SNP",
     beta_col = "BETA",
@@ -61,7 +61,10 @@ metab_full$lower = metab_full$result.b-1.96*metab_full$result.se
 metab_full$upper = metab_full$result.b+1.96*metab_full$result.se
 write.csv(metab_full,"result/mvmr_res.csv", row.names = FALSE)
 #### END: MVMR ----
-
+hete_met <- mr_heterogeneity(metab)
+hete_met <- merge(hete_met,pathway,by="outcome")
+pleio_met <- mr_pleiotropy_test(metab)
+hete_met <- merge(hete_met,pathway,by="outcome")
 
 
 #### MVMR sensitivity----
@@ -85,10 +88,10 @@ sen_exposure_dat <- mv_extract_exposures_local(
   harmonise_strictness = 2
 )
 # outcome
-first_category_name = list.files("D:/research/outcome/mvmr_met_sep/") 
+first_category_name = list.files("outcome/mvmr_met_sep/") 
 for (i in 1 : 174) {
   data_ <- read_outcome_data(
-    filename = paste0('D:/research/outcome/mvmr_met_sep/',first_category_name[i]),
+    filename = paste0('outcome/mvmr_met_sep/',first_category_name[i]),
     sep = ",",
     snp_col = "SNP",
     beta_col = "BETA",

@@ -8,7 +8,7 @@ setwd("pathname/data")
 #two-step-MR Step1
 #two-step-MR Step1    exposure:ABMI
 
-twostep1_cbmi <- read_exposure_data(
+twostep1_abmi <- read_exposure_data(
   filename = "exposure_and_confounders/abmi147.csv", 
   sep = ",",
   snp_col = "SNP",
@@ -38,7 +38,7 @@ twostep1_met <- read_outcome_data(
 
 # # Using rs656326 as a proxy to replace rs1561277 r2=0.72 delete
 
-twostep1h <- harmonise_data(twostep1_cbmi, twostep1_met)
+twostep1h <- harmonise_data(twostep1_abmi, twostep1_met)
 table(twostep2h$outcome)
 twostep1h2 <- twostep2h[twostep1h$mr_keep,]
 table(twostep1h2$outcome)
@@ -93,7 +93,7 @@ write.csv(step2res,"result/step2res.csv",row.names = FALSE)
 #two-step-MR Step1
 #two-step-MR Step1    exposure:ABMI
 
-twostep1_cbmi_sen <- read_exposure_data(
+twostep1_abmi_sen <- read_exposure_data(
   filename = "exposure_and_confounders/abmi141_sen.csv", 
   sep = ",",
   snp_col = "SNP",
@@ -122,7 +122,7 @@ twostep1_met <- read_outcome_data(
 ) 
 
 # # Using rs656326 as a proxy to replace rs1561277 r2=0.72 delete
-twostep1h_sen <- harmonise_data(twostep1_cbmi_sen, twostep1_met)
+twostep1h_sen <- harmonise_data(twostep1_abmi_sen, twostep1_met)
 table(twostep2h_sen$outcome)
 twostep1h2_sen <- twostep1h_sen[twostep1h_sen$mr_keep,]
 table(twostep1h2_sen$outcome)

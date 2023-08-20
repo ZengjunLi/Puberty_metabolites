@@ -167,8 +167,18 @@ res_sen_2smr <- merge(res_sen_2smr,pathway,by="outcome")
 res_sen_2smr$lower = res_sen_2smr$b-1.96*res_sen_2smr$se
 res_sen_2smr$upper = res_sen_2smr$b+1.96*res_sen_2smr$se
 res_sen_2smr <- merge(res_sen_2smr,pathway,by="outcome")
-write.csv(res_sen_2smr,"result/pt_met_2smr_results(ivw)_sensitivity.csv",row.names = FALSE)
 
+#heterogeneity   pleiotropy
+hete_met2 <- mr_heterogeneity(h_sen2)
+hete_met2 <- merge(hete_met2,pathway,by="outcome")
+pleio_met2 <- mr_pleiotropy_test(h_sen2)
+pleio_met2 <- merge(pleio_met2,pathway,by="outcome")
+
+write.csv(hete_met2,"result/pt_met_2smr_sensitivity_heterogeneity.csv",row.names = FALSE)
+
+write.csv(pleio_met2,"result/pt_met_2smr_sensitivity_pleiotropy.csv",row.names = FALSE)
+
+write.csv(res_sen_2smr,"result/pt_met_2smr_sensitivity_IVW.csv", row.names = FALSE)
 #### End: 2SMR PT on Met (Excluding 7 snps)----
 
 
